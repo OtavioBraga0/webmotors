@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import veiculo from './veiculo/reducer';
+import vehicle from './vehicle/reducer';
 
 export default combineReducers({
-  veiculo,
+  vehicle,
 });

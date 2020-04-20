@@ -18,52 +18,52 @@ import {
 
 import CheckBox from '../../components/CheckBox';
 import { colors } from '../../util/colors';
-import { raios, anos, precos } from '../../util/formulario';
+import { radius, years, prices } from '../../util/form';
 
 function Home() {
-  const veiculo = useSelector(state => state.veiculo);
+  const vehicle = useSelector(state => state.vehicle);
   const dispatch = useDispatch();
-  const [filtro, setFiltro] = useState({
-    marca: 0,
-    modelo: 0,
-    versao: 0,
-    local: '',
-    ano: 0,
-    faixa: 0,
-    raio: 1,
-    novo: true,
-    usado: true,
+  const [filter, setFilter] = useState({
+    make: 0,
+    model: 0,
+    version: 0,
+    location: '',
+    year: 0,
+    range: 0,
+    radius: 1,
+    new: true,
+    used: true,
   });
-  const [temDados, setTemDados] = useState({
-    marca: false,
-    modelo: false,
-    versao: false,
+  const [haveData, setHaveData] = useState({
+    make: false,
+    model: false,
+    version: false,
   });
   const [removeValue, setRemoveValue] = useState();
 
-  async function carregaSelect(type, id = 0) {
+  async function loadSelect(type, id = 0) {
     await dispatch({ type, id });
   }
 
   useEffect(() => {
-    carregaSelect('@veiculo/LIST_MARCA_REQUEST');
+    loadSelect('@vehicle/LIST_MAKE_REQUEST');
   }, []);
 
-  function changeTabSelected(vei) {
+  function changeTabSelected(v) {
     document.querySelectorAll('.tab-item').forEach(el => {
       el.classList.remove('selected');
     });
 
-    document.getElementById(vei).classList.add('selected');
+    document.getElementById(v).classList.add('selected');
   }
 
-  function handleTabClick(vei) {
-    changeTabSelected(vei);
+  function handleTabClick(v) {
+    changeTabSelected(v);
   }
 
   function handleChangeInput(event) {
     const { value } = event.target;
-    setFiltro({ ...filtro, local: value });
+    setFilter({ ...filter, locale: value });
     if (value) {
       setRemoveValue(true);
     } else {
@@ -71,23 +71,23 @@ function Home() {
     }
   }
 
-  function limpaLocal() {
-    setFiltro({ ...filtro, local: '' });
+  function clearLocation() {
+    setFilter({ ...filter, location: '' });
     setRemoveValue(false);
   }
 
-  function limpaFiltros() {
-    setTemDados({ marca: false, modelo: false, versao: false });
-    setFiltro({
-      ...filtro,
-      marca: 0,
-      modelo: 0,
-      versao: 0,
-      ano: 0,
-      faixa: 0,
-      raio: 1,
+  function clearFilters() {
+    setHaveData({ make: false, model: false, version: false });
+    setFilter({
+      ...filter,
+      make: 0,
+      model: 0,
+      version: 0,
+      year: 0,
+      range: 0,
+      radius: 1,
     });
-    limpaLocal();
+    clearLocation();
   }
 
   return (
@@ -95,9 +95,9 @@ function Home() {
       <TabItemContainer>
         <div>
           <TabItem
-            id="carro"
+            id="car"
             className="tab-item selected"
-            onClick={() => handleTabClick('carro')}
+            onClick={() => handleTabClick('car')}
           >
             <svg
               id="Camada_1"
@@ -117,9 +117,9 @@ function Home() {
             </div>
           </TabItem>
           <TabItem
-            id="moto"
+            id="motorcycle"
             className="tab-item"
-            onClick={() => handleTabClick('moto')}
+            onClick={() => handleTabClick('motorcycle')}
           >
             <svg
               id="Camada_1"
@@ -145,37 +145,37 @@ function Home() {
       <FormContainer>
         <CheckItem>
           <CheckBox
-            className="novo"
-            check={filtro.novo}
+            className="new"
+            check={filter.new}
             onClick={() =>
-              filtro.novo
-                ? setFiltro({ ...filtro, novo: false })
-                : setFiltro({ ...filtro, novo: true })
+              filter.new
+                ? setFilter({ ...filter, new: false })
+                : setFilter({ ...filter, new: true })
             }
           />
           Novos
         </CheckItem>
         <CheckItem>
           <CheckBox
-            className="usado"
-            check={filtro.usado}
+            className="used"
+            check={filter.used}
             onClick={() =>
-              filtro.usado
-                ? setFiltro({ ...filtro, usado: false })
-                : setFiltro({ ...filtro, usado: true })
+              filter.used
+                ? setFilter({ ...filter, used: false })
+                : setFilter({ ...filter, used: true })
             }
           />
           Usados
         </CheckItem>
         <div>
           <FormGroup>
-            <FormInput className="junto-direita">
+            <FormInput className="together-right">
               <FiMapPin color={colors.primary} size={24} />
               <span>Onde: </span>
               <input
                 type="text"
-                className={[removeValue ? 'limpa-local' : null]}
-                value={filtro.local}
+                className={[removeValue ? 'clear-location' : null]}
+                value={filter.local}
                 onChange={event => handleChangeInput(event)}
               />
               {removeValue ? (
@@ -183,20 +183,20 @@ function Home() {
                   style={{ cursor: 'pointer' }}
                   size={22}
                   color={colors.secondary}
-                  onClick={limpaLocal}
+                  onClick={clearLocation}
                 />
               ) : null}
             </FormInput>
-            <FormInput className="junto-esquerda">
+            <FormInput className="together-left">
               <span>Raio: </span>
               <select
-                id="raio"
-                value={filtro.raio}
+                id="radius"
+                value={filter.radius}
                 onChange={event =>
-                  setFiltro({ ...filtro, raio: event.target.value })
+                  setFilter({ ...filter, radius: event.target.value })
                 }
               >
-                {raios.map(r => {
+                {radius.map(r => {
                   return (
                     <option key={r.value} value={r.value}>
                       {r.text}
@@ -208,20 +208,20 @@ function Home() {
             <FormGroup>
               <FormInput>
                 <select
-                  id="ano"
-                  value={filtro.ano}
+                  id="year"
+                  value={filter.year}
                   onChange={event =>
-                    setFiltro({ ...filtro, ano: event.target.value })
+                    setFilter({ ...filter, year: event.target.value })
                   }
                 >
                   <option disabled value="0">
                     Ano Desejado
                   </option>
                   <option value="todas">Todos</option>
-                  {anos.map(ano => {
+                  {years.map(year => {
                     return (
-                      <option key={ano.value} value={ano.value}>
-                        {ano.value}
+                      <option key={year.value} value={year.value}>
+                        {year.value}
                       </option>
                     );
                   })}
@@ -231,20 +231,20 @@ function Home() {
             <FormGroup>
               <FormInput>
                 <select
-                  id="faixa"
-                  value={filtro.faixa}
+                  id="range"
+                  value={filter.range}
                   onChange={event =>
-                    setFiltro({ ...filtro, faixa: event.target.value })
+                    setFilter({ ...filter, range: event.target.value })
                   }
                 >
                   <option disabled value="0">
                     Faixa de preço
                   </option>
                   <option value="todas">Todas</option>
-                  {precos.map(preco => {
+                  {prices.map(price => {
                     return (
-                      <option key={preco.value} value={preco.value}>
-                        {preco.text}
+                      <option key={price.value} value={price.value}>
+                        {price.text}
                       </option>
                     );
                   })}
@@ -259,13 +259,13 @@ function Home() {
               <FormInput>
                 <span>Marca: </span>
                 <select
-                  id="marca"
-                  value={filtro.marca}
+                  id="make"
+                  value={filter.make}
                   onChange={event => {
-                    setFiltro({ ...filtro, marca: event.target.value });
-                    setTemDados({ ...temDados, marca: true });
-                    carregaSelect(
-                      '@veiculo/LIST_MODELO_REQUEST',
+                    setFilter({ ...filter, make: event.target.value });
+                    setHaveData({ ...haveData, make: true });
+                    loadSelect(
+                      '@vehicle/LIST_MODEL_REQUEST',
                       event.target.value
                     );
                   }}
@@ -273,11 +273,11 @@ function Home() {
                   <option key="0" disabled value="0">
                     Todas
                   </option>
-                  {veiculo.marca &&
-                    veiculo.marca.map(marca => {
+                  {vehicle.make &&
+                    vehicle.make.map(make => {
                       return (
-                        <option key={marca.ID} value={marca.ID}>
-                          {marca.Name}
+                        <option key={make.ID} value={make.ID}>
+                          {make.Name}
                         </option>
                       );
                     })}
@@ -288,23 +288,23 @@ function Home() {
               <FormInput>
                 <span>Modelo: </span>
                 <select
-                  disabled={!temDados.marca}
-                  value={filtro.modelo}
+                  disabled={!haveData.make}
+                  value={filter.model}
                   onChange={event => {
-                    setFiltro({ ...filtro, modelo: event.target.value });
-                    setTemDados({ ...temDados, modelo: true });
-                    carregaSelect(
-                      '@veiculo/LIST_VERSAO_REQUEST',
+                    setFilter({ ...filter, model: event.target.value });
+                    setHaveData({ ...haveData, model: true });
+                    loadSelect(
+                      '@vehicle/LIST_VERSION_REQUEST',
                       event.target.value
                     );
                   }}
                 >
                   <option value="0">Todas</option>
-                  {veiculo.modelo &&
-                    veiculo.modelo.map(modelo => {
+                  {vehicle.model &&
+                    vehicle.model.map(model => {
                       return (
-                        <option key={modelo.ID} value={modelo.ID}>
-                          {modelo.Name}
+                        <option key={model.ID} value={model.ID}>
+                          {model.Name}
                         </option>
                       );
                     })}
@@ -315,19 +315,19 @@ function Home() {
               <span>Versão: </span>
               <select
                 className="form-input"
-                value={filtro.versao}
-                disabled={!temDados.modelo}
+                value={filter.version}
+                disabled={!haveData.model}
                 onChange={event => {
-                  setFiltro({ ...filtro, versao: event.target.value });
-                  setTemDados({ ...temDados, versao: true });
+                  setFilter({ ...filter, version: event.target.value });
+                  setHaveData({ ...haveData, version: true });
                 }}
               >
                 <option value="0">Todas</option>
-                {veiculo.versao &&
-                  veiculo.versao.map(versao => {
+                {vehicle.version &&
+                  vehicle.version.map(version => {
                     return (
-                      <option key={versao.ID} value={versao.ID}>
-                        {versao.Name}
+                      <option key={version.ID} value={version.ID}>
+                        {version.Name}
                       </option>
                     );
                   })}
@@ -344,15 +344,15 @@ function Home() {
             <FormGroup>
               <button
                 type="button"
-                className="limpa-filtros"
-                onClick={limpaFiltros}
+                className="clear-filters"
+                onClick={clearFilters}
               >
-                Limpar filtros
+                Limpar Filtros
               </button>
               <button
                 className="busca"
                 type="button"
-                disabled={!temDados.versao}
+                disabled={!haveData.version}
               >
                 Ver Ofertas
               </button>

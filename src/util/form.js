@@ -1,4 +1,4 @@
-export const raios = [
+export const radius = [
   { text: '30km', value: 30 },
   { text: '50km', value: 50 },
   { text: '80km', value: 80 },
@@ -7,7 +7,7 @@ export const raios = [
   { text: '200km', value: 200 },
 ];
 
-export const anos = [
+export const years = [
   { value: 2007 },
   { value: 2008 },
   { value: 2009 },
@@ -24,7 +24,7 @@ export const anos = [
   { value: 2020 },
 ];
 
-export const precos = [
+export const prices = [
   { value: '1a5', text: '1 mil à 5 mil' },
   { value: '5a10', text: '5 mil à 10 mil' },
   { value: '10a15', text: '10 mil à 15 mil' },

@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import veiculo from './veiculo/sagas';
+import vehicle from './vehicle/sagas';
 
 export default function* rootSaga() {
-  return yield all([veiculo]);
+  return yield all([vehicle]);
 }

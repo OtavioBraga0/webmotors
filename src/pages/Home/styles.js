@@ -51,7 +51,6 @@ export const TabItem = styled.div`
       color: ${colors.secondary};
       text-transform: uppercase;
       line-height: 1em;
-px;
       &.tab-title {
         color: ${colors.secondary};
         font-size: 25px;
@@ -152,7 +151,7 @@ export const FormInput = styled.div`
     }
   }
 
-  &.junto-direita {
+  &.together-right {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     width: 65%;
@@ -161,12 +160,12 @@ export const FormInput = styled.div`
       width: 65%;
     }
 
-    input.limpa-local {
+    input.clear-location {
       width: 55%;
     }
   }
 
-  &.junto-esquerda {
+  &.together-left {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-left: none;
@@ -184,7 +183,7 @@ export const FormInput = styled.div`
       width: 75% !important;
     }
 
-    input.limpa-local {
+    input.clear-location {
       width: 65% !important;
     }
   }
@@ -232,7 +231,7 @@ export const FormFooter = styled.div`
     }
   }
 
-  .limpa-filtros {
+  .clear-filters {
     color: ${colors.secondary};
     font-size: 15px;
     cursor: pointer;
