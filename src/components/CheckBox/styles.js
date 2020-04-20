@@ -14,7 +14,7 @@ export const StyledCheckbox = styled.div`
   height: 20px;
   background: #fff;
   border-radius: 1px;
-  border: 0.5px solid ${colors.secundary};
+  border: 0.5px solid ${colors.secondary};
   transition: all 150ms;
   padding: 3px;
 

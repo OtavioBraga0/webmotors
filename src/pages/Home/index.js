@@ -182,7 +182,7 @@ function Home() {
                 <TiDelete
                   style={{ cursor: 'pointer' }}
                   size={22}
-                  color={colors.secundary}
+                  color={colors.secondary}
                   onClick={limpaLocal}
                 />
               ) : null}

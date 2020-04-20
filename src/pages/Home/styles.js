@@ -15,7 +15,7 @@ export const TabItem = styled.div`
   list-style: none;
   padding: 10px 15px;
   padding-bottom: 13px;
-  border-bottom: 1px solid ${colors.secundary};
+  border-bottom: 1px solid ${colors.secondary};
   display: flex;
   align-items: flex-end;
   cursor: pointer;
@@ -48,12 +48,12 @@ export const TabItem = styled.div`
     flex-direction: column;
 
     span {
-      color: ${colors.secundary};
+      color: ${colors.secondary};
       text-transform: uppercase;
       line-height: 1em;
 px;
       &.tab-title {
-        color: ${colors.secundary};
+        color: ${colors.secondary};
         font-size: 25px;
       }
     }
@@ -131,11 +131,11 @@ export const FormInput = styled.div`
   padding: 0 5px;
   height: 40px;
   width: 100%;
-  border: 1px solid ${colors.secundary};
+  border: 1px solid ${colors.secondary};
   opacity: 1;
 
   span {
-    color: ${colors.secundary};
+    color: ${colors.secondary};
     margin: 0 10px;
   }
 
@@ -227,13 +227,13 @@ export const FormFooter = styled.div`
     border-radius: 4px;
 
     &:disabled {
-      background: ${lighten(0.3, colors.secundary)};
+      background: ${lighten(0.3, colors.secondary)};
       cursor: not-allowed;
     }
   }
 
   .limpa-filtros {
-    color: ${colors.secundary};
+    color: ${colors.secondary};
     font-size: 15px;
     cursor: pointer;
     background: rgba(0, 0, 0, 0);
